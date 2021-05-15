@@ -31,7 +31,9 @@ all the observers with the new data.
 Cons:
 specific usecase Embedded systems: There might be a multiple observers for a single ADC channel then
 Say if our notifier runs at every 1msec but the observer code runs at 20msec or 50msecs. then it will be a waste of CPU time to notify 
-all the observers even when there is no need. polling works best resource wise.
+all the observers even when there is no need. polling works best resource wise.  
+
+After reading Reactor pattern, if multiple observers are waiting for their own specific data then reactor pattern works best.
 
 ## Adapter Pattern
 When there are some entities that speak complelety different language but now need to work together to make the job done
@@ -79,9 +81,20 @@ I know a little python, while surfing in the net i found the following link to b
 interesting . [LINK](https://python-patterns.guide/gang-of-four/decorator-pattern/)
 Even the reference links are interesting too.
 
-The example in the link says its a decorator pattern but it doesnt looks like one. Correct me if i am wrong.
-[stackoverflow](https://stackoverflow.com/questions/35996960/c-decorator-design-pattern-using-the-pizza-example)
-Moreover i have my reason in the comment section of the only answer
+Another example which i thought of yesterday:
+The above example may not be an appropriate one i am not sure how appropriate the below one is.
+Remembering an old proverb "When all you have is a hammer everything looks like a nail"
+i think if we are obsessed with one pattern then we might endup doing damage to the code ..lol.
+
+Say there is a class called OSLC which is subclassed into another class IBM jazz server that fetches
+the data of some entities from the server and export them in a csv.
+Before exporting them lets say it first stores everything in memory with a defined structure.
+Then Export() can be called to export/save the data into csv file which uses the data which is an predefined data structure.
+Export() is defined in the class called OSLC.
+Now one of my colleague wants to add some more data to the csv so instead of subclassing from the class i create
+he simply can use the decorator to add the info at the end of the structure of the data.
+When Export() method is called both the data gets written into the csv.
+
 
 
 
